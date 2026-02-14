@@ -47,11 +47,18 @@ CV培训/
 │   └── final-project/        # 期末考核项目（三选一）
 │
 ├── src/                       # 示例代码
-│   └── examples/             # 配合教程的示例代码
-│       ├── 01-read-display.py
-│       ├── 02-basic-operations.py
-│       ├── 03-color-conversion.py
+│   ├── examples/             # 配合教程的示例代码（Python脚本）
+│   │   ├── 01-read-display.py
+│   │   ├── 02-basic-operations.py
+│   │   ├── 03-color-conversion.py
+│   │   └── ...
+│   └── notebooks/            # Jupyter Notebook版本
+│       ├── 01-read-display.ipynb
+│       ├── 02-basic-operations.ipynb
+│       ├── 03-color-conversion.ipynb
 │       └── ...
+│   ├── templates/            # 代码模板
+│   └── utils/                # 工具库
 │
 └── assets/                    # 图片资源 ✅ 已生成15张测试图片
     ├── sample-images/
@@ -108,19 +115,61 @@ pip install opencv-python numpy matplotlib jupyter -i https://pypi.tuna.tsinghua
 ```
 
 ### 2. 验证安装
+
+**方式1：运行Python脚本**
 ```bash
 python src/examples/01-read-display.py
 ```
 
+**方式2：使用Jupyter Notebook（推荐）**
+```bash
+# 启动 Jupyter Notebook
+jupyter notebook
+
+# 或使用 JupyterLab
+jupyter lab
+```
+
+然后在浏览器中打开 `src/notebooks/` 目录，选择对应的 `.ipynb` 文件开始学习。
+
 ### 3. 开始学习
 从 [00-环境搭建](./docs/00-环境搭建.md) 开始，按顺序学习教程文档。
+
+**学习方式：**
+- **Python脚本**：适合有编程基础的学习者，可以直接运行和修改代码
+- **Jupyter Notebook**：推荐！交互式学习环境，可以逐步执行代码单元格，查看实时结果
 
 ## 学习资源
 
 - [OpenCV官方文档](https://docs.opencv.org/4.x/)
 - [OpenCV Python教程](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html)
 - 教程文档位于 [docs/](./docs/) 目录
+- **示例代码**：
+  - Python脚本版本：[src/examples/](./src/examples/)
+  - Jupyter Notebook版本：[src/notebooks/](./src/notebooks/) ⭐ 推荐
 - **测试图片已生成** - 位于 [assets/](./assets/) 目录（共15张）
+
+### Jupyter Notebook 使用说明
+
+Jupyter Notebook 提供了交互式学习环境，特别适合OpenCV学习：
+
+**优势：**
+- 🔬 **逐步执行**：可以逐个单元格运行代码，观察每步结果
+- 📊 **即时可视化**：图像直接显示在notebook中
+- ✏️ **实时修改**：可以修改代码并立即重新运行
+- 📝 **文档结合**：代码和解释在同一文档中
+- 🎓 **适合教学**：讲师演示时更加直观
+
+**Notebook列表：**
+1. `01-read-display.ipynb` - 图像读取、显示与保存
+2. `02-basic-operations.ipynb` - 图像基本操作（缩放、裁剪、翻转、旋转）
+3. `03-color-conversion.ipynb` - 色彩空间转换与颜色提取
+4. `04-drawing.ipynb` - 绘制图形与文字
+5. `05-filtering.ipynb` - 图像滤波与边缘检测
+6. `06-thresholding.ipynb` - 图像阈值处理
+7. `07-morphology.ipynb` - 形态学操作
+8. `08-project-examples.ipynb` - 综合实战项目
+9. `09-video-processing.ipynb` - 视频处理基础
 
 ### 测试图片说明
 
