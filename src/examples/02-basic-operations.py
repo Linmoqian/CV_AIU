@@ -107,18 +107,13 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # ==================== 6. 保存结果 ====================
-print("\n保存结果...")
+print("\n保存结果 (已禁用)...")
 
-cv2.imwrite('resized.jpg', img_resized)
-print("✓ 保存: resized.jpg")
-
-cv2.imwrite('cropped.jpg', img_cropped)
-print("✓ 保存: cropped.jpg")
-
-cv2.imwrite('flipped_horizontal.jpg', img_h_flip)
-print("✓ 保存: flipped_horizontal.jpg")
-
-cv2.imwrite('rotated_45.jpg', img_rotated)
-print("✓ 保存: rotated_45.jpg")
+# 保存功能已禁用，如需保存请取消以下注释
+# cv2.imwrite('resized.jpg', img_resized)
+# cv2.imwrite('cropped.jpg', img_cropped)
+# cv2.imwrite('flipped_horizontal.jpg', img_h_flip)
+# cv2.imwrite('rotated_45.jpg', img_rotated)
+print("[提示] 图片保存功能已禁用，避免生成多余文件")
 
 print("\n程序运行完成！")

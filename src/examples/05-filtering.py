@@ -140,18 +140,13 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # ==================== 5. 保存结果 ====================
-print("\n5. 保存结果")
+print("\n5. 保存结果 (已禁用)")
 
-cv2.imwrite('filtering_gaussian.jpg', blur_gaussian)
-print("  [OK] filtering_gaussian.jpg")
-
-cv2.imwrite('filtering_bilateral.jpg', blur_bilateral)
-print("  [OK] filtering_bilateral.jpg")
-
-cv2.imwrite('edges_canny.jpg', edges)
-print("  [OK] edges_canny.jpg")
-
-cv2.imwrite('edges_auto.jpg', edges_auto)
-print("  [OK] edges_auto.jpg")
+# 保存功能已禁用，如需保存请取消以下注释
+# cv2.imwrite('filtering_gaussian.jpg', blur_gaussian)
+# cv2.imwrite('filtering_bilateral.jpg', blur_bilateral)
+# cv2.imwrite('edges_canny.jpg', edges)
+# cv2.imwrite('edges_auto.jpg', edges_auto)
+print("  [提示] 图片保存功能已禁用，避免生成多余文件")
 
 print("\n程序运行完成！")

@@ -134,18 +134,13 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # ==================== 7. 保存结果 ====================
-print("\n保存结果...")
+print("\n保存结果 (已禁用)...")
 
-cv2.imwrite('gray.jpg', gray)
-print("[OK] 保存: gray.jpg")
-
-cv2.imwrite('hsv.jpg', hsv)
-print("[OK] 保存: hsv.jpg")
-
-cv2.imwrite('red_mask.jpg', mask)
-print("[OK] 保存: red_mask.jpg")
-
-cv2.imwrite('red_extracted.jpg', result)
-print("[OK] 保存: red_extracted.jpg")
+# 保存功能已禁用，如需保存请取消以下注释
+# cv2.imwrite('gray.jpg', gray)
+# cv2.imwrite('hsv.jpg', hsv)
+# cv2.imwrite('red_mask.jpg', mask)
+# cv2.imwrite('red_extracted.jpg', result)
+print("[提示] 图片保存功能已禁用，避免生成多余文件")
 
 print("\n程序运行完成！")

@@ -147,10 +147,11 @@ if result:
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    cv2.imwrite('scanner_original.jpg', original)
-    cv2.imwrite('scanner_warped.jpg', warped)
-    cv2.imwrite('scanner_scanned.jpg', scanned)
-    print("  [保存] scanner_*.jpg")
+    # 保存功能已禁用
+    # cv2.imwrite('scanner_original.jpg', original)
+    # cv2.imwrite('scanner_warped.jpg', warped)
+    # cv2.imwrite('scanner_scanned.jpg', scanned)
+    print("  [提示] 图片保存功能已禁用")
 
 # ==================== 项目2：颜色识别分类器 ====================
 print("\n[项目2] 颜色识别分类器")
@@ -264,8 +265,9 @@ if result:
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    cv2.imwrite('color_detection_result.jpg', result_img)
-    print("  [保存] color_detection_result.jpg")
+    # 保存功能已禁用
+    # cv2.imwrite('color_detection_result.jpg', result_img)
+    print("  [提示] 图片保存功能已禁用")
 
 # ==================== 项目3：简单人脸检测 ====================
 print("\n[项目3] 简单人脸检测")
@@ -357,8 +359,9 @@ if result:
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-    cv2.imwrite('face_detection_result.jpg', result_img)
-    print("  [保存] face_detection_result.jpg")
+    # 保存功能已禁用
+    # cv2.imwrite('face_detection_result.jpg', result_img)
+    print("  [提示] 图片保存功能已禁用")
 
 print("\n" + "=" * 50)
 print("所有项目演示完成！")

@@ -139,18 +139,13 @@ while True:
 cv2.destroyAllWindows()
 
 # ==================== 6. 保存结果 ====================
-print("\n6. 保存结果")
+print("\n6. 保存结果 (已禁用)")
 
-cv2.imwrite('threshold_manual.jpg', thresh_manual)
-print("  [OK] threshold_manual.jpg")
-
-cv2.imwrite('threshold_otsu.jpg', thresh_otsu)
-print("  [OK] threshold_otsu.jpg")
-
-cv2.imwrite('threshold_adaptive_mean.jpg', thresh_mean)
-print("  [OK] threshold_adaptive_mean.jpg")
-
-cv2.imwrite('threshold_adaptive_gaussian.jpg', thresh_gaussian)
-print("  [OK] threshold_adaptive_gaussian.jpg")
+# 保存功能已禁用，如需保存请取消以下注释
+# cv2.imwrite('threshold_manual.jpg', thresh_manual)
+# cv2.imwrite('threshold_otsu.jpg', thresh_otsu)
+# cv2.imwrite('threshold_adaptive_mean.jpg', thresh_mean)
+# cv2.imwrite('threshold_adaptive_gaussian.jpg', thresh_gaussian)
+print("  [提示] 图片保存功能已禁用，避免生成多余文件")
 
 print("\n程序运行完成！")

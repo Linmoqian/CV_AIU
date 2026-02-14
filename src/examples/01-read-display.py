@@ -88,16 +88,13 @@ cv2.destroyAllWindows()
 
 # ==================== 5. 保存图像 ====================
 print("\n" + "=" * 50)
-print("5. 保存图像")
+print("5. 保存图像 (已禁用)")
 print("=" * 50)
 
-# 保存灰度图
-cv2.imwrite('output_gray.jpg', img_gray)
-print("[OK] 灰度图已保存为: output_gray.jpg")
-
-# 保存为PNG格式（无损）
-cv2.imwrite('output_gray.png', img_gray)
-print("[OK] 灰度图已保存为: output_gray.png")
+# 保存功能已禁用，如需保存请取消以下注释
+# cv2.imwrite('output_gray.jpg', img_gray)
+# cv2.imwrite('output_gray.png', img_gray)
+print("[提示] 图片保存功能已禁用，避免生成多余文件")
 
 # ==================== 6. 创建测试图像 ====================
 print("\n" + "=" * 50)
@@ -111,10 +108,6 @@ test_img[:] = (255, 0, 0)  # BGR格式：蓝色
 # 添加文字
 cv2.putText(test_img, 'OpenCV Test', (50, 150),
            cv2.FONT_HERSHEY_SIMPLEX, 1.5, (255, 255, 255), 2)
-
-# 保存测试图像
-cv2.imwrite('test_image.jpg', test_img)
-print("[OK] 测试图像已保存为: test_image.jpg")
 
 # 显示测试图像
 cv2.imshow('Test Image', test_img)

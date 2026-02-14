@@ -178,21 +178,14 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # ==================== 9. 保存结果 ====================
-print("\n9. 保存结果")
+print("\n9. 保存结果 (已禁用)")
 
-cv2.imwrite('morphology_erosion.jpg', erosion_1)
-print("  [OK] morphology_erosion.jpg")
-
-cv2.imwrite('morphology_dilation.jpg', dilation_1)
-print("  [OK] morphology_dilation.jpg")
-
-cv2.imwrite('morphology_opening.jpg', opening)
-print("  [OK] morphology_opening.jpg")
-
-cv2.imwrite('morphology_closing.jpg', closing)
-print("  [OK] morphology_closing.jpg")
-
-cv2.imwrite('morphology_gradient.jpg', gradient)
-print("  [OK] morphology_gradient.jpg")
+# 保存功能已禁用，如需保存请取消以下注释
+# cv2.imwrite('morphology_erosion.jpg', erosion_1)
+# cv2.imwrite('morphology_dilation.jpg', dilation_1)
+# cv2.imwrite('morphology_opening.jpg', opening)
+# cv2.imwrite('morphology_closing.jpg', closing)
+# cv2.imwrite('morphology_gradient.jpg', gradient)
+print("  [提示] 图片保存功能已禁用，避免生成多余文件")
 
 print("\n程序运行完成！")

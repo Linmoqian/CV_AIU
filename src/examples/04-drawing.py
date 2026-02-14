@@ -131,9 +131,9 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # ==================== 8. 保存结果 ====================
-print("\n保存结果...")
-cv2.imwrite('drawing_result.jpg', img)
-print("  [OK] 保存: drawing_result.jpg")
+print("\n保存结果 (已禁用)...")
+# cv2.imwrite('drawing_result.jpg', img)
+print("  [提示] 图片保存功能已禁用，避免生成多余文件")
 
 # ==================== 9. 综合示例：绘制标注框 ====================
 print("\n9. 综合示例：绘制检测框")
@@ -158,7 +158,8 @@ cv2.imshow('Detection Result', result_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-cv2.imwrite('detection_result.jpg', result_img)
-print("  [OK] 保存: detection_result.jpg")
+# 保存功能已禁用
+# cv2.imwrite('detection_result.jpg', result_img)
+print("  [提示] 图片保存功能已禁用，避免生成多余文件")
 
 print("\n程序运行完成！")
