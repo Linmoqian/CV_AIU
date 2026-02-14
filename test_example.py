@@ -15,7 +15,22 @@ def test_example_file(example_file):
 
     # 移除GUI相关代码
     lines = []
+    skip_interactive = False
+    indent_level = 0
+
     for line in code.split('\n'):
+        # 检测交互式while True循环并跳过
+        if 'while True:' in line and 'cv2.getTrackbarPos' in code[code.find(line):code.find(line)+500]:
+            skip_interactive = True
+            continue
+
+        if skip_interactive:
+            # 检测是否退出循环
+            if line.strip() and not line.strip().startswith('#') and not line.startswith(' ' * (indent_level + 1)):
+                skip_interactive = False
+            else:
+                continue
+
         # 跳过cv2.imshow调用
         if 'cv2.imshow' in line and not line.strip().startswith('#'):
             continue
@@ -23,7 +38,7 @@ def test_example_file(example_file):
         if 'cv2.waitKey(0)' in line:
             line = line.replace('cv2.waitKey(0)', 'cv2.waitKey(1)')
         # 替换cv2.waitKey(2000)等
-        if 'cv2.waitKey(' in line and not line.strip().startswith('#'):
+        if 'cv2.waitKey(' in line and not line.strip().startswith('#') and 'getTrackbarPos' not in line:
             line = line.replace('cv2.waitKey(', 'cv2.waitKey(1)  # Modified for test: cv2.waitKey(')
         # 保持其他代码不变
         lines.append(line)
