@@ -10,13 +10,26 @@ OpenCV示例：图像滤波与增强
 
 import cv2
 import numpy as np
+import sys
+import os
+
+# 添加utils目录到路径（兼容中文路径和Jupyter）
+if "__file__" in globals():
+    utils_path = os.path.join(os.path.dirname(__file__), "..", "utils")
+else:
+    utils_path = os.path.abspath(os.path.join("..", "utils"))
+if os.path.exists(utils_path):
+    sys.path.append(utils_path)
+    from io_helpers import imread_chinese, get_image_path
 
 print("图像滤波与边缘检测")
 
-# 读取含噪图片
-img = cv2.imread('../assets/sample-images/noisy/noisy-gaussian.jpg')
+# 读取含噪图片（使用中文路径兼容函数）
+img_path = get_image_path('sample-images/noisy/noisy-gaussian.jpg')
+if img_path:
+    img = imread_chinese(img_path)
 
-if img is None:
+if img is None or img_path is None:
     print("警告：无法读取含噪图片，生成测试图片...")
     # 生成测试图片
     clean = np.zeros((300, 400, 3), dtype=np.uint8)

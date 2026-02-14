@@ -10,13 +10,26 @@ OpenCV示例：图像阈值处理
 
 import cv2
 import numpy as np
+import sys
+import os
+
+# 添加utils目录到路径（兼容中文路径和Jupyter）
+if "__file__" in globals():
+    utils_path = os.path.join(os.path.dirname(__file__), "..", "utils")
+else:
+    utils_path = os.path.abspath(os.path.join("..", "utils"))
+if os.path.exists(utils_path):
+    sys.path.append(utils_path)
+    from io_helpers import imread_chinese, get_image_path
 
 print("图像阈值处理")
 
-# 读取图像
-img = cv2.imread('../assets/sample-images/real-world/document.jpg')
+# 读取图像（使用中文路径兼容函数）
+img_path = get_image_path('sample-images/real-world/document.jpg')
+if img_path:
+    img = imread_chinese(img_path)
 
-if img is None:
+if img is None or img_path is None:
     print("警告：无法读取文档图片，使用测试图片...")
     # 创建测试图片（模拟文档）
     img = np.zeros((400, 600, 3), dtype=np.uint8)

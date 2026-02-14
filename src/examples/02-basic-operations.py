@@ -10,9 +10,24 @@ OpenCV示例：图像基本操作
 
 import cv2
 import numpy as np
+import sys
+import os
 
-# 读取图像
-img = cv2.imread('../assets/sample-images/basic/landscape.jpg')
+# 添加utils目录到路径（兼容中文路径和Jupyter）
+if "__file__" in globals():
+    utils_path = os.path.join(os.path.dirname(__file__), "..", "utils")
+else:
+    utils_path = os.path.abspath(os.path.join("..", "utils"))
+if os.path.exists(utils_path):
+    sys.path.append(utils_path)
+    from io_helpers import imread_chinese, get_image_path
+
+# 读取图像（使用中文路径兼容函数）
+img_path = get_image_path('sample-images/basic/landscape.jpg')
+if img_path is None:
+    print("错误：无法找到图片文件！")
+    exit()
+img = imread_chinese(img_path)
 
 if img is None:
     print("无法读取图片！")

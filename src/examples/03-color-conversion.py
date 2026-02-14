@@ -10,13 +10,28 @@ OpenCV示例：色彩空间转换
 
 import cv2
 import numpy as np
+import sys
+import os
 
-# 读取图像
-img = cv2.imread('../assets/sample-images/colored-objects/red-apple.jpg')
+# 添加utils目录到路径（兼容中文路径和Jupyter）
+if "__file__" in globals():
+    utils_path = os.path.join(os.path.dirname(__file__), "..", "utils")
+else:
+    utils_path = os.path.abspath(os.path.join("..", "utils"))
+if os.path.exists(utils_path):
+    sys.path.append(utils_path)
+    from io_helpers import imread_chinese, get_image_path
+
+# 读取图像（使用中文路径兼容函数）
+img_path = get_image_path('sample-images/colored-objects/red-apple.jpg')
+if img_path is None:
+    print("错误：无法找到图片文件！")
+    exit()
+img = imread_chinese(img_path)
 
 if img is None:
     print("无法读取图片！")
-    print("提示：请确保 ../assets/sample-images/colored-objects/red-apple.jpg 存在")
+    print("提示：请确保 assets/sample-images/colored-objects/red-apple.jpg 存在")
     # 创建测试图像
     img = np.zeros((300, 300, 3), dtype=np.uint8)
     img[:] = (0, 0, 255)  # 红色
@@ -42,8 +57,7 @@ print("\n2. BGR转灰度")
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # 方法2：读取时直接转灰度
-img_gray_read = cv2.imread('../assets/sample-images/colored-objects/red-apple.jpg',
-                          cv2.IMREAD_GRAYSCALE)
+img_gray_read = imread_chinese(img_path, cv2.IMREAD_GRAYSCALE)
 
 print(f"彩色图形状: {img.shape}")
 print(f"灰度图形状: {gray.shape}")

@@ -19,7 +19,7 @@ def document_scanner(img_path=None):
     """文档扫描器"""
     # 读取或创建测试图像
     if img_path:
-        img = cv2.imread(img_path)
+        img = imread_chinese(img_path)
     else:
         print("  创建测试文档图像...")
         img = np.zeros((400, 600, 3), dtype=np.uint8)
@@ -157,7 +157,7 @@ def color_classifier(img_path=None):
     """颜色识别分类器"""
     # 读取或创建测试图像
     if img_path:
-        img = cv2.imread(img_path)
+        img = imread_chinese(img_path)
     else:
         print("  创建测试图像...")
         img = np.zeros((400, 600, 3), dtype=np.uint8)
@@ -281,10 +281,10 @@ def face_detector(img_path=None):
 
     # 读取或创建测试图像
     if img_path:
-        img = cv2.imread(img_path)
+        img = imread_chinese(img_path)
     else:
         print("  使用assets中的face.jpg...")
-        img = cv2.imread('../assets/sample-images/real-world/face.jpg')
+        img = imread_chinese('../assets/sample-images/real-world/face.jpg')
         if img is None:
             print("  face.jpg不存在，创建测试人脸图像...")
             img = np.zeros((400, 400, 3), dtype=np.uint8)
