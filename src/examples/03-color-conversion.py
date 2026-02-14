@@ -132,8 +132,10 @@ row2 = np.hstack([cv2.cvtColor(h, cv2.COLOR_GRAY2BGR),
                   cv2.cvtColor(s, cv2.COLOR_GRAY2BGR),
                   cv2.cvtColor(v, cv2.COLOR_GRAY2BGR)])
 
-# 第三行：HSV、颜色提取结果
-row3 = np.hstack([cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR), result])
+# 第三行：HSV、颜色提取结果、空白填充
+# 创建一个空白图像用于填充
+blank = np.zeros_like(img)
+row3 = np.hstack([cv2.cvtColor(hsv, cv2.COLOR_HSV2BGR), result, blank])
 
 # 垂直拼接
 result_all = np.vstack([row1, row2, row3])
