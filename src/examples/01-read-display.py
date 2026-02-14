@@ -10,14 +10,12 @@ OpenCV基础示例：图像的读取、显示和保存
 
 import cv2
 import numpy as np
+import sys
 import os
 
-def imread_chinese(path):
-    """读取包含中文路径的图片（OpenCV不支持中文路径的解决方案）"""
-    if not os.path.exists(path):
-        return None
-    img = cv2.imdecode(np.fromfile(path, dtype=np.uint8), -1)
-    return img
+# 添加utils目录到路径
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'utils'))
+from io_helpers import imread_chinese, imwrite_chinese, get_image_path
 
 # ==================== 1. 读取图像 ====================
 print("=" * 50)
@@ -25,40 +23,19 @@ print("1. 读取图像")
 print("=" * 50)
 
 # 读取彩色图（默认）
-# 尝试多个可能的路径
-img = None
-possible_paths = [
-    '../assets/sample-images/basic/landscape.jpg',  # 从src/examples/运行
-    '../../assets/sample-images/basic/landscape.jpg',  # 从src/运行
-    'assets/sample-images/basic/landscape.jpg',  # 从项目根目录运行
-]
-
-for path in possible_paths:
-    img = imread_chinese(path)  # 使用支持中文路径的函数
-    if img is not None:
-        print(f"[OK] 从路径读取成功: {path}")
-        break
-
-# 如果所有路径都失败，提示错误
-if img is None:
-    print("错误：无法读取图片！")
-    print("请检查：")
-    print("  1. 文件路径是否正确")
-    print("  2. 文件是否存在")
-    print("  3. 请运行 'assets/生成测试图片.py' 生成测试图片")
+# 智能查找图片路径
+img_path = get_image_path('sample-images/basic/landscape.jpg')
+if img_path is None:
+    print("错误：无法找到图片文件！")
+    print("请运行 'assets/生成测试图片.py' 生成测试图片")
     exit()
 
-# 读取灰度图（方法1：直接读取）
-img_gray = None
-for path in possible_paths:
-    img_gray = imread_chinese(path)
-    if img_gray is not None:
-        img_gray = cv2.cvtColor(img_gray, cv2.COLOR_BGR2GRAY)
-        break
+img = imread_chinese(img_path)
+print(f"[OK] 图片读取成功: {os.path.basename(img_path)}")
+print(f"    完整路径: {img_path}")
 
-# 如果读取失败，从彩色图转换
-if img_gray is None:
-    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+# 读取灰度图（方法1：直接读取）
+img_gray = imread_chinese(img_path, cv2.IMREAD_GRAYSCALE)
 
 # 读取灰度图（方法2：从彩色图转换）
 img_gray2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
