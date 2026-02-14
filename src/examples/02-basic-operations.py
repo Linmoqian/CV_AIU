@@ -100,14 +100,20 @@ print("\n显示结果...")
 print("按任意键关闭所有窗口...")
 
 # 创建大图显示所有结果
-# 第一行：原图、缩小、放大
-row1 = np.hstack([img, img_small, cv2.resize(img_large, (width, height))])
+# 第一行：原图、缩小（调整到原尺寸）、放大（调整到原尺寸）
+img_small_display = cv2.resize(img_small, (width, height))
+img_large_display = cv2.resize(img_large, (width, height))
+row1 = np.hstack([img, img_small_display, img_large_display])
 
-# 第二行：裁剪、水平翻转、垂直翻转
-row2 = np.hstack([img_cropped, img_h_flip, img_v_flip])
+# 第二行：裁剪（调整到原尺寸）、水平翻转、垂直翻转
+img_cropped_display = cv2.resize(img_cropped, (width, height))
+row2 = np.hstack([img_cropped_display, img_h_flip, img_v_flip])
 
-# 第三行：旋转45度、旋转90度
-row3 = np.hstack([img_rotated, img_90])
+# 第三行：旋转45度、旋转90度（调整到原尺寸）+ 黑色填充
+img_90_display = cv2.resize(img_90, (width, height))
+# 创建一个空白图像用于填充
+blank = np.zeros_like(img)
+row3 = np.hstack([img_rotated, img_90_display, blank])
 
 # 垂直拼接所有行
 result = np.vstack([row1, row2, row3])
