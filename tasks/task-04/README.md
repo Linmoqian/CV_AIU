@@ -15,7 +15,7 @@
 
 ## 🎯 任务概述
 
-本任务要求你掌握图像阈值分割技术，这是图像处理中最重要的基础操作之一。阈值处理将灰度图像转换为二值图像，是许多高级视觉任务（如文档扫描、车牌识别、物体分割）的预处理步骤。你将实现5种简单阈值、Otsu自动阈值和自适应阈值方法，并对比分析它们的优缺点和适用场景。
+本任务要求你掌握图像阈值分割技术，这是图像处理中最重要的基础操作之一。阈值处理将灰度图像转换为二值图像，是许多高级视觉任务的预处理步骤。你将实现5种简单阈值、Otsu自动阈值和自适应阈值方法，并对比分析它们的优缺点和适用场景。
 
 **预计时间：** 45-60 分钟
 **难度：** ★★
@@ -47,7 +47,7 @@ pip install opencv-python numpy matplotlib
 
 ## 📝 任务要求
 
-### 1. 简单阈值处理（30分）
+### 1. 简单阈值处理
 
 **目标：** 掌握5种基本阈值类型的原理和效果
 
@@ -119,7 +119,7 @@ ret, thresh5 = cv2.threshold(img, thresh_value, max_value, cv2.THRESH_TOZERO_INV
 # 打印结果信息
 print(f"使用的阈值: {thresh_value}")
 print(f"图像尺寸: {img.shape}")
-print(f"像素范围: [{img.min()}, {img.max()}]")
+print(f"像素范围: [{img.min)
 
 # 保存所有结果
 cv2.imwrite('threshold_binary.jpg', thresh1)
@@ -157,7 +157,7 @@ print("所有阈值类型已保存到 threshold_types.jpg")
 
 | 类型 | 效果描述 | 适用场景 | 效果 |
 |------|---------|---------|------|
-| **BINARY** | >阈值→255, ≤阈值→0 | 文档二值化、物体分割 | 最常用，产生纯黑白图像 |
+| **BINARY** | >阈值→255, ≤阈值→0 |
 | **BINARY_INV** | >阈值→0, ≤阈值→255 | 提取暗色物体 | 与BINARY相反 |
 | **TRUNC** | >阈值→阈值, ≤阈值不变 | 调整亮度、去除高光 | 保留暗部细节，压缩亮部 |
 | **TOZERO** | >阈值不变, ≤阈值→0 | 去除暗背景，保留亮物体 | 只保留亮部区域 |
@@ -171,7 +171,7 @@ print("所有阈值类型已保存到 threshold_types.jpg")
 
 ---
 
-### 2. Otsu 自动阈值（25分）
+### 2. Otsu 自动阈值
 
 **目标：** 理解 Otsu 算法原理，实现自动阈值选择
 
@@ -296,7 +296,7 @@ else:
 
 ---
 
-### 3. 自适应阈值处理（30分）
+### 3. 自适应阈值处理
 
 **目标：** 掌握自适应阈值方法，处理光照不均的图像
 
@@ -391,30 +391,6 @@ for blockSize in [7, 9, 11, 13, 15]:
         thresh = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                                       cv2.THRESH_BINARY, blockSize, C)
 
-        # 简单评分：统计前景像素比例（理想情况约30-50%）
-        foreground_ratio = np.count_nonzero(thresh) / thresh.size
-        score = 1 - abs(foreground_ratio - 0.4)  # 越接近40%越好
-
-        if score > best_score:
-            best_score = score
-            best_params = (blockSize, C)
-            cv2.imwrite('threshold_adaptive_best.jpg', thresh)
-
-print(f"最佳参数: blockSize={best_params[0]}, C={best_params[1]}")
-print(f"最佳结果: threshold_adaptive_best.jpg")
-```
-
-**自适应阈值参数详解：**
-
-| 参数 | 含义 | 推荐值 | 效果 |
-|------|------|--------|------|
-| **blockSize** | 邻域大小（必须为奇数） | 11, 15 | 较小→细节多但噪声多；较大→平滑但丢失细节 |
-| **C** | 从均值减去的常数 | 2, 5 | 较小→保留更多细节；较大→过滤更多噪声 |
-| **adaptiveMethod** | MEAN_C 或 GAUSSIAN_C | GAUSSIAN_C | 高斯加权效果更好，但计算稍慢 |
-
-**参数调优指南：**
-
-```python
 # 光照不均匀严重
 th = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                            cv2.THRESH_BINARY, 15, 5)
@@ -447,7 +423,7 @@ th = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
 
 ---
 
-### 4. 实际应用：文档扫描预处理（15分）
+### 4. 实际应用：文档扫描预处理
 
 **目标：** 将阈值处理应用到实际问题，实现文档扫描预处理流程
 
@@ -613,7 +589,7 @@ print("文档预处理对比图已保存")
 1. **代码文件**：`task4_solution.py`
    - 包含所有4个任务的实现
    - 代码注释清晰，符合 PEP 8 规范
-   - 包含交互式阈值调整功能（额外加分）
+   - 包含交互式阈值调整功能（）
 
 2. **保存的图像**（按任务要求命名）：
    ```
@@ -658,39 +634,6 @@ task-04-submission/
 │   └── threshold_adaptive_best.jpg
 └── report.md                       # 实验报告（可选）
 ```
-
----
-
-## 📊 评分标准
-
-| 任务项 | 分值 | 评分标准 |
-|--------|------|----------|
-| **1. 简单阈值处理** | 30分 | |
-| - 实现5种阈值类型 | 15分 | 所有类型都正确实现 |
-| - 对比图制作 | 8分 | 布局清晰，标签正确 |
-| - 原理解释 | 7分 | 清晰说明每种类型的效果 |
-| **2. Otsu 自动阈值** | 25分 | |
-| - Otsu实现 | 10分 | 正确使用 OTSU 标志 |
-| - 直方图绘制 | 8分 | 标记阈值位置，分析双峰 |
-| - 对比分析 | 7分 | 对比固定阈值，说明优缺点 |
-| **3. 自适应阈值** | 30分 | |
-| - 均值和高斯方法 | 12分 | 两种方法都正确实现 |
-| - 参数调优 | 10分 | 尝试不同参数，找到最佳组合 |
-| - 对比图 | 8分 | 清晰对比所有方法 |
-| **4. 文档预处理应用** | 15分 | |
-| - 完整流程实现 | 8分 | 包含滤波、阈值、形态学 |
-| - 效果评估 | 4分 | 有定量和定性分析 |
-| - 对比图 | 3分 | 展示不同处理步骤效果 |
-| **代码质量** | +10分 | |
-| - 注释清晰 | +4分 | 代码有详细的中文注释 |
-| - 代码规范 | +3分 | 符合 PEP 8 规范 |
-| - 错误处理 | +3分 | 有完善的异常处理机制 |
-| **额外加分项** | +20分 | |
-| - 交互式阈值调整 | +8分 | 使用 Trackbar 实时调整参数 |
-| - 多阈值处理 | +5分 | 实现多阈值分割 |
-| - 自动方法选择 | +7分 | 根据图像特性自动选择最佳方法 |
-
-**总分：100分 + 10分（代码质量）+ 20分（额外加分）= 130分**
 
 ---
 
@@ -767,7 +710,7 @@ if img is None:
     sys.exit(1)
 
 print(f"  [OK] 图像读取成功: {img.shape}")
-print(f"  - 像素范围: [{img.min()}, {img.max()}]")
+print(f"  - 像素范围: [{img.min)
 
 # 设置阈值参数
 thresh_value = 127
@@ -893,17 +836,6 @@ for blockSize in [7, 9, 11, 13, 15]:
         thresh = cv2.adaptiveThreshold(doc_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
                                       cv2.THRESH_BINARY, blockSize, C)
 
-        # 简单评分
-        foreground_ratio = np.count_nonzero(thresh) / thresh.size
-        score = 1 - abs(foreground_ratio - 0.4)
-
-        if score > best_score:
-            best_score = score
-            best_params = (blockSize, C)
-            cv2.imwrite(f'{OUTPUT_DIR}/threshold_adaptive_best.jpg', thresh)
-
-print(f"  最佳参数: blockSize={best_params[0]}, C={best_params[1]}")
-
 # ==================== 4. 文档预处理（可选）====================
 print("\n[4] 文档预处理应用（可选）...")
 
@@ -937,7 +869,7 @@ report = f"""
 
 | 类型 | 效果 | 适用场景 | 前景占比 |
 |------|------|---------|---------|
-| BINARY | >127→255, ≤127→0 | 文档二值化、物体分割 | {np.count_nonzero(thresh_binary)/thresh_binary.size*100:.2f}% |
+| BINARY | >127→255, ≤127→0 |
 | BINARY_INV | >127→0, ≤127→255 | 提取暗色物体 | {np.count_nonzero(thresh_binary_inv)/thresh_binary_inv.size*100:.2f}% |
 | TRUNC | >127→127, ≤127不变 | 调整亮度、去除高光 | {np.count_nonzero(thresh_trunc)/thresh_trunc.size*100:.2f}% |
 | TOZERO | >127不变, ≤127→0 | 去除暗背景 | {np.count_nonzero(thresh_tozero)/thresh_tozero.size*100:.2f}% |
@@ -966,7 +898,7 @@ report = f"""
 | 方法 | 优点 | 缺点 | 适用场景 |
 |------|------|------|---------|
 | 全局阈值 | 快速简单 | 光照不均效果差 | 光照均匀 |
-| Otsu | 自动阈值 | 需要双峰直方图 | 双峰分布 |
+| Otsu | 自动阈值 |
 | 自适应均值 | 处理光照不均 | 计算较慢 | 光照不均 |
 | 自适应高斯 | 效果最好 | 计算最慢 | 光照不均（推荐） |
 
@@ -1441,7 +1373,7 @@ thresh = cv2.adaptiveThreshold(img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
 
 完成基础任务后，可以尝试以下挑战：
 
-### 挑战1：交互式阈值调整工具（15分）
+### 挑战1：交互式阈值调整工具
 
 **目标：** 实现实时调整阈值参数的可视化工具
 
@@ -1517,7 +1449,7 @@ while True:
 cv2.destroyAllWindows()
 ```
 
-### 挑战2：多阈值分割与彩色标记（20分）
+### 挑战2：多阈值分割与彩色标记
 
 **目标：** 实现多阈值分割，用不同颜色标记不同区域
 
@@ -1562,7 +1494,7 @@ def multi_threshold_colored(img, thresholds):
     return result
 ```
 
-### 挑战3：自动方法选择系统（25分）
+### 挑战3：自动方法选择系统
 
 **目标：** 根据图像特性自动选择最佳阈值方法
 
@@ -1597,7 +1529,7 @@ def auto_threshold_selection(img):
     return method_name, result, reason
 ```
 
-### 挑战4：视频实时阈值处理（20分）
+### 挑战4：视频实时阈值处理
 
 **目标：** 对视频进行实时阈值处理
 
@@ -1648,7 +1580,7 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-### 挑战5：文档扫描完整应用（30分）
+### 挑战5：文档扫描完整应用
 
 **目标：** 实现完整的文档扫描应用
 

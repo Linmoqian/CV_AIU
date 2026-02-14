@@ -45,7 +45,7 @@ pip install opencv-python numpy matplotlib
 
 ## 📝 任务要求
 
-### 1. 线性滤波：均值滤波与高斯滤波（25分）
+### 1. 线性滤波：均值滤波与高斯滤波
 
 **目标：** 掌握线性滤波方法，理解其原理和效果差异
 
@@ -117,7 +117,7 @@ print(f"高斯滤波 5x5: {gaussian_5x5.shape}")
 
 ---
 
-### 2. 非线性滤波：中值滤波与双边滤波（30分）
+### 2. 非线性滤波：中值滤波与双边滤波
 
 **目标：** 掌握非线性滤波方法，理解其优势
 
@@ -197,14 +197,14 @@ cv2.imwrite('filtering_bilateral_3.jpg', bilateral_3)
 
 ---
 
-### 3. 效果对比与分析（25分）
+### 3. 效果对比与分析
 
 **目标：** 全面对比各种滤波方法的效果，分析适用场景
 
 **要求：**
 1. **创建对比图像**
    - 将所有滤波结果并排显示
-   - 使用 `np.hstack()` 和 `np.vstack()` 组合
+   - 使用 `np.hstack)` 组合
    - 保存为 `filtering_comparison.jpg`
 
 2. **定量分析**
@@ -359,7 +359,7 @@ with open('filtering_analysis_report.txt', 'w', encoding='utf-8') as f:
 
 ---
 
-### 4. 自定义锐化卷积核（20分）
+### 4. 自定义锐化卷积核
 
 **目标：** 理解卷积核的工作原理，实现图像锐化
 
@@ -495,7 +495,7 @@ cv2.imwrite('sharpened_blended.jpg', sharpened_blended)
 
 ---
 
-### 5. 边缘检测：Sobel 与 Canny（30分）
+### 5. 边缘检测：Sobel 与 Canny
 
 **目标：** 掌握常用的边缘检测算法，理解其原理和差异
 
@@ -549,7 +549,7 @@ sobelxy1 = cv2.add(sobelx, sobely)
 
 # 方法2: 计算梯度幅值（更准确）
 sobelxy2 = np.sqrt(sobelx.astype(float)**2 + sobely.astype(float)**2)
-sobelxy2 = np.uint8(sobelxy2 / sobelxy2.max() * 255)
+sobelxy2 = np.uint8(sobelxy2 / sobelxy2.max)
 
 cv2.imwrite('edges_sobel_x.jpg', sobelx)
 cv2.imwrite('edges_sobel_y.jpg', sobely)
@@ -631,7 +631,7 @@ print("\n所有边缘检测完成！")
 
 | 特性 | Sobel | Canny |
 |------|-------|-------|
-| **原理** | 一阶微分算子 | 多阶段算法（降噪-梯度-非极大值抑制-双阈值） |
+| **原理** | 一阶微分算子 |
 | **输出** | 灰度图（梯度强度） | 二值图（边缘/非边缘） |
 | **边缘宽度** | 较宽 | 单像素宽 |
 | **噪声敏感度** | 较高 | 较低（先高斯滤波） |
@@ -730,44 +730,6 @@ task-03-submission/
 │   └── edges_comparison.jpg
 └── report.md                       # 实验报告（可选）
 ```
-
----
-
-## 📊 评分标准
-
-| 任务项 | 分值 | 评分标准 |
-|--------|------|----------|
-| **1. 线性滤波** | 25分 | |
-| - 均值滤波实现 | 10分 | 正确使用 cv2.blur，尝试不同核大小 |
-| - 高斯滤波实现 | 10分 | 正确使用 GaussianBlur，理解sigma参数 |
-| - 原理说明 | 5分 | 清晰说明两种滤波的差异 |
-| **2. 非线性滤波** | 30分 | |
-| - 中值滤波实现 | 12分 | 正确使用 medianBlur，效果良好 |
-| - 双边滤波实现 | 12分 | 正确使用 bilateralFilter，参数合理 |
-| - 参数调优 | 6分 | 尝试不同参数组合并分析效果 |
-| **3. 效果对比分析** | 25分 | |
-| - 对比图制作 | 8分 | 创建清晰的对比图，布局合理 |
-| - PSNR计算 | 8分 | 正确计算并解释PSNR含义 |
-| - 分析报告 | 9分 | 报告完整，分析深入，至少300字 |
-| **4. 自定义锐化核** | 20分 | |
-| - 锐化核设计 | 8分 | 核设计正确，元素和为1 |
-| - 滤波效果 | 7分 | 锐化效果明显，不过度 |
-| - 可调强度 | 5分 | 实现可调强度的锐化函数 |
-| **5. 边缘检测** | 30分 | |
-| - Sobel实现 | 12分 | 正确计算x/y方向梯度并合并 |
-| - Canny实现 | 12分 | 正确使用双阈值，效果良好 |
-| - 对比分析 | 6分 | 清晰对比两种方法的差异 |
-| **代码质量** | +10分 | |
-| - 注释清晰 | +4分 | 代码有详细的中文注释 |
-| - 代码规范 | +3分 | 符合 PEP 8 规范 |
-| - 错误处理 | +3分 | 有完善的异常处理机制 |
-| **额外加分项** | +20分 | |
-| - 自动阈值选择 | +5分 | 实现自适应Canny阈值 |
-| - 可视化增强 | +5分 | 使用matplotlib绘制效果曲线 |
-| - 交互式调参 | +5分 | 使用Trackbar实时调整参数 |
-| - 多种噪声测试 | +5分 | 测试不同噪声类型的效果 |
-
-**总分：130分 + 10分（代码质量）+ 20分（额外加分）= 160分**
 
 ---
 
@@ -911,7 +873,7 @@ sobely = cv2.Sobel(gray, cv2.CV_64F, 0, 1, ksize=3)
 sobelx = np.uint8(np.absolute(sobelx))
 sobely = np.uint8(np.absolute(sobely))
 sobelxy = np.uint8(np.sqrt(sobelx.astype(float)**2 + sobely.astype(float)**2))
-sobelxy = np.uint8(sobelxy / sobelxy.max() * 255)
+sobelxy = np.uint8(sobelxy / sobelxy.max)
 cv2.imwrite(f'{OUTPUT_DIR}/edges_sobel.jpg', sobelxy)
 print(f"  [OK] Sobel边缘检测完成")
 
@@ -1333,31 +1295,31 @@ cv2.destroyAllWindows()
 
 完成基础任务后，可以尝试以下挑战：
 
-### 挑战1：交互式滤波器（15分）
+### 挑战1：交互式滤波器
 - 使用 Trackbar 实时调整所有滤波参数
 - 支持切换不同滤波方法
 - 实时预览滤波效果
 - 显示 PSNR 和处理时间
 
-### 挑战2：自动参数调优（20分）
+### 挑战2：自动参数调优
 - 实现自动噪声类型检测
 - 根据噪声类型自动选择最佳滤波器
 - 自动优化滤波参数（网格搜索）
 - 输出最优参数组合
 
-### 挑战3：高级去噪算法（25分）
+### 挑战3：高级去噪算法
 - 实现非局部均值去噪（fastNlMeansDenoising）
 - 实现维纳滤波
 - 对比多种算法的效果
 - 制作性能对比图表
 
-### 挑战4：边缘检测优化（20分）
+### 挑战4：边缘检测优化
 - 实现 Laplacian 边缘检测
 - 实现 Scharr 算子
 - 对比 Sobel、Scharr、Laplacian 效果
 - 实现边缘连接和细化
 
-### 挑战5：视频去噪（30分）
+### 挑战5：视频去噪
 - 从摄像头读取视频
 - 实时对视频帧进行去噪
 - 实现时域滤波（结合前后帧）

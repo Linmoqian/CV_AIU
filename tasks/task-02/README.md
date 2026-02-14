@@ -45,7 +45,7 @@ pip install opencv-python numpy matplotlib
 
 ## 📝 任务要求
 
-### 1. 色彩空间转换与通道分离（25分）
+### 1. 色彩空间转换与通道分离
 
 **目标：** 将 BGR 图像转换为 HSV，并分离显示三个通道
 
@@ -90,9 +90,9 @@ hsv_channels = np.hstack((h_show, s_show, v_show))
 cv2.imwrite('hsv_channels.jpg', hsv_channels)
 
 # 打印各通道的值范围
-print(f"H通道范围: {h.min()} - {h.max()}")
-print(f"S通道范围: {s.min()} - {s.max()}")
-print(f"V通道范围: {v.min()} - {v.max()}")
+print(f"H通道范围: {h.min)
+print(f"S通道范围: {s.min)
+print(f"V通道范围: {v.min)
 ```
 
 **提示：**
@@ -102,7 +102,7 @@ print(f"V通道范围: {v.min()} - {v.max()}")
 
 ---
 
-### 2. 红色提取（30分）
+### 2. 红色提取
 
 **目标：** 从图像中提取所有红色区域并显示
 
@@ -157,7 +157,7 @@ cv2.imwrite('red_extracted.jpg', result)
 
 ---
 
-### 3. 其他颜色提取（20分）
+### 3. 其他颜色提取
 
 **目标：** 实现绿、蓝、黄三种颜色的提取
 
@@ -224,7 +224,7 @@ cv2.imwrite('yellow_extracted.jpg', yellow_result)
 
 ---
 
-### 4. 通用颜色识别函数（25分）
+### 4. 通用颜色识别函数
 
 **目标：** 编写一个通用的函数，可以提取任意指定颜色
 
@@ -298,7 +298,7 @@ def extract_color(img, color_name, show_result=True, morph_op=True):
     color_name = color_name.lower()
     if color_name not in color_ranges:
         print(f"[ERROR] 不支持的颜色：{color_name}")
-        print(f"支持的颜色：{list(color_ranges.keys())}")
+        print(f"支持的颜色：{list(color_ranges.keys)
         return None, None
 
     # 转换为 HSV
@@ -331,7 +331,6 @@ def extract_color(img, color_name, show_result=True, morph_op=True):
         cv2.destroyAllWindows()
 
     return mask, result
-
 
 # 使用示例
 if __name__ == "__main__":
@@ -388,7 +387,7 @@ if __name__ == "__main__":
    - 显示程序运行的控制台输出
    - 可以包含图像显示窗口的截图
 
-4. **实验报告**（可选，额外加分）：
+4. **实验报告**（可选，）：
    - 总结 HSV 色彩空间的特点
    - 分析不同颜色的提取效果
    - 讨论遇到的问题和解决方案
@@ -411,39 +410,6 @@ task-02-submission/
 │   └── yellow_extracted.jpg
 └── report.md                   # 实验报告（可选）
 ```
-
----
-
-## 📊 评分标准
-
-| 任务项 | 分值 | 评分标准 |
-|--------|------|----------|
-| **1. 色彩空间转换与通道分离** | 25分 | |
-| - BGR到HSV转换 | 8分 | 正确使用 cvtColor，理解HSV范围 |
-| - 通道分离 | 8分 | 正确分离H、S、V三个通道 |
-| - 通道显示 | 9分 | 三个通道正确显示并保存 |
-| **2. 红色提取** | 30分 | |
-| - HSV范围定义 | 10分 | 正确定义红色的两个范围 |
-| - 掩膜创建与合并 | 10分 | 正确使用 inRange 和 bitwise_or |
-| - 结果显示 | 10分 | 掩膜清晰，提取准确 |
-| **3. 其他颜色提取** | 20分 | |
-| - 绿色提取 | 7分 | 范围正确，提取效果好 |
-| - 蓝色提取 | 7分 | 范围正确，提取效果好 |
-| - 黄色提取 | 6分 | 范围正确，提取效果好 |
-| **4. 通用颜色识别函数** | 25分 | |
-| - 函数设计 | 8分 | 接口合理，参数设计恰当 |
-| - 功能完整性 | 10分 | 支持四种颜色，处理红色特殊情况 |
-| - 错误处理 | 7分 | 有完善的错误处理机制 |
-| **代码质量** | +10分 | |
-| - 注释清晰 | +4分 | 代码有适当的中文注释 |
-| - 代码规范 | +3分 | 符合 PEP 8 规范 |
-| - 错误处理 | +3分 | 有异常捕获和错误提示 |
-| **额外加分项** | +15分 | |
-| - 交互式调参 | +5分 | 实现滑动条调整HSV范围 |
-| - 多颜色同时显示 | +5分 | 在一张图上显示多种颜色 |
-| - 形态学优化 | +5分 | 使用高级形态学操作优化效果 |
-
-**总分：100分 + 10分（代码质量）+ 15分（额外加分）= 125分**
 
 ---
 
@@ -515,7 +481,7 @@ def extract_color(img, color_name, show_result=False, morph_op=True):
     color_name = color_name.lower()
     if color_name not in color_ranges:
         print(f"[ERROR] 不支持的颜色：{color_name}")
-        print(f"支持的颜色：{list(color_ranges.keys())}")
+        print(f"支持的颜色：{list(color_ranges.keys)
         return None, None
 
     # 转换为 HSV
@@ -549,7 +515,6 @@ def extract_color(img, color_name, show_result=False, morph_op=True):
 
     return mask, result
 
-
 # ==================== 主程序 ====================
 print("=" * 60)
 print("Task 2: 色彩空间转换与颜色提取")
@@ -575,9 +540,9 @@ hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 h, s, v = cv2.split(hsv)
 
 print(f"  [OK] HSV 转换完成")
-print(f"  - H通道范围: [{h.min()}, {h.max()}]")
-print(f"  - S通道范围: [{s.min()}, {s.max()}]")
-print(f"  - V通道范围: [{v.min()}, {v.max()}]")
+print(f"  - H通道范围: [{h.min)
+print(f"  - S通道范围: [{s.min)
+print(f"  - V通道范围: [{v.min)
 
 # 归一化并合并显示
 h_show = cv2.normalize(h, None, 0, 255, cv2.NORM_MINMAX)
@@ -923,22 +888,22 @@ hsv_eq = cv2.merge([h, s, v_eq])
 
 完成基础任务后，可以尝试以下挑战：
 
-### 挑战1：交互式颜色选择器（15分）
+### 挑战1：交互式颜色选择器
 - 使用 OpenCV 的滑动条（Trackbar）实时调整 HSV 范围
 - 点击图像显示该点的 HSV 值
 - 实时预览提取效果
 
-### 挑战2：多目标追踪（20分）
+### 挑战2：多目标追踪
 - 同时提取图像中的多种颜色
 - 统计每种颜色的像素数量和占比
 - 在原图上用边界框标记不同颜色的物体
 
-### 挑战3：光照鲁棒性（15分）
+### 挑战3：光照鲁棒性
 - 实现自适应的颜色提取
 - 使用直方图均衡化处理光照变化
 - 在不同光照条件下测试算法稳定性
 
-### 挑战4：视频颜色检测（25分）
+### 挑战4：视频颜色检测
 - 从摄像头实时读取视频
 - 实时检测并追踪特定颜色的物体
 - 显示颜色追踪的轨迹
