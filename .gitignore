@@ -1,0 +1,28 @@
+# Python缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+
+# IDE配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 测试生成的图片
+*.jpg
+*.png
+!assets/sample-images/**/*.jpg
+!assets/sample-images/**/*.png
+
+# 临时文件
+*.tmp
+*.bak
+*.log
