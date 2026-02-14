@@ -1,0 +1,164 @@
+"""
+OpenCV示例：图像绘制
+
+学习目标:
+    1. 绘制基本图形（线条、矩形、圆形）
+    2. 绘制多边形
+    3. 添加文字标注
+    4. 创建可视化标注
+"""
+
+import cv2
+import numpy as np
+
+print("=" * 50)
+print("图像绘制示例")
+print("=" * 50)
+
+# 创建黑色画布
+img = np.zeros((600, 800, 3), dtype=np.uint8)
+img[:] = (255, 255, 255)  # 白色背景
+
+# ==================== 1. 绘制线条 ====================
+print("\n1. 绘制线条")
+
+# 红色水平线
+cv2.line(img, (50, 50), (750, 50), (0, 0, 255), 3)
+
+# 绿色垂直线
+cv2.line(img, (50, 50), (50, 550), (0, 255, 0), 3)
+
+# 蓝色对角线
+cv2.line(img, (50, 50), (750, 550), (255, 0, 0), 2)
+
+# 抗锯齿线
+cv2.line(img, (200, 50), (400, 550), (0, 255, 255), 3, cv2.LINE_AA)
+
+print("  [OK] 绘制了4条线")
+
+# ==================== 2. 绘制矩形 ====================
+print("\n2. 绘制矩形")
+
+# 红色空心矩形
+cv2.rectangle(img, (100, 100), (300, 200), (0, 0, 255), 2)
+
+# 绿色填充矩形
+cv2.rectangle(img, (350, 100), (550, 200), (0, 255, 0), -1)
+
+# 蓝色粗边框矩形
+cv2.rectangle(img, (600, 100), (750, 200), (255, 0, 0), 5)
+
+print("  [OK] 绘制了3个矩形")
+
+# ==================== 3. 绘制圆形 ====================
+print("\n3. 绘制圆形")
+
+# 红色空心圆
+cv2.circle(img, (150, 350), 60, (0, 0, 255), 2)
+
+# 绿色填充圆
+cv2.circle(img, (350, 350), 60, (0, 255, 0), -1)
+
+# 蓝色粗边框圆
+cv2.circle(img, (550, 350), 60, (255, 0, 0), 5)
+
+# 黄色小圆
+cv2.circle(img, (700, 350), 30, (0, 255, 255), -1)
+
+print("  [OK] 绘制了4个圆")
+
+# ==================== 4. 绘制椭圆 ====================
+print("\n4. 绘制椭圆")
+
+# 红色椭圆
+cv2.ellipse(img, (150, 500), (80, 50), 0, 0, 360, (0, 0, 255), 2)
+
+# 绿色半椭圆
+cv2.ellipse(img, (350, 500), (80, 50), 0, 0, 180, (0, 255, 0), -1)
+
+# 旋转椭圆
+cv2.ellipse(img, (550, 500), (80, 50), 45, 0, 360, (255, 0, 0), 3)
+
+print("  [OK] 绘制了3个椭圆")
+
+# ==================== 5. 绘制多边形 ====================
+print("\n5. 绘制多边形")
+
+# 定义三角形顶点
+triangle = np.array([[100, 250], [200, 250], [150, 300]], dtype=np.int32)
+triangle = triangle.reshape((-1, 1, 2))
+cv2.polylines(img, [triangle], True, (255, 0, 255), 2)
+
+# 定义五边形顶点
+pentagon = np.array([
+    [650, 250],
+    [670, 280],
+    [660, 320],
+    [640, 320],
+    [630, 280]
+], dtype=np.int32)
+pentagon = pentagon.reshape((-1, 1, 2))
+cv2.polylines(img, [pentagon], True, (0, 255, 255), 2)
+
+print("  [OK] 绘制了2个多边形")
+
+# ==================== 6. 添加文字 ====================
+print("\n6. 添加文字")
+
+# 白色文字
+cv2.putText(img, 'OpenCV Drawing', (100, 40),
+           cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2)
+
+# 蓝色大文字
+cv2.putText(img, 'Rectangle', (110, 140),
+           cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+
+# 绿色文字
+cv2.putText(img, 'Circle', (310, 350),
+           cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 0), 2, cv2.LINE_AA)
+
+# 小文字
+cv2.putText(img, 'Ellipse', (100, 480),
+           cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 1)
+
+print("  [OK] 添加了文字标注")
+
+# ==================== 7. 显示结果 ====================
+print("\n显示结果...")
+cv2.imshow('Drawing Demo', img)
+print("按任意键关闭窗口...")
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+# ==================== 8. 保存结果 ====================
+print("\n保存结果...")
+cv2.imwrite('drawing_result.jpg', img)
+print("  [OK] 保存: drawing_result.jpg")
+
+# ==================== 9. 综合示例：绘制标注框 ====================
+print("\n9. 综合示例：绘制检测框")
+
+result_img = np.zeros((400, 600, 3), dtype=np.uint8)
+result_img[:] = (240, 240, 240)
+
+# 绘制检测框
+cv2.rectangle(result_img, (100, 100), (300, 300), (0, 255, 0), 2)
+
+# 绘制标签背景
+cv2.rectangle(result_img, (100, 70), (220, 100), (0, 255, 0), -1)
+
+# 添加标签文字
+cv2.putText(result_img, 'Object 95%', (105, 95),
+           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+
+# 添加中心点
+cv2.circle(result_img, (200, 200), 3, (0, 0, 255), -1)
+
+cv2.imshow('Detection Result', result_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+
+cv2.imwrite('detection_result.jpg', result_img)
+print("  [OK] 保存: detection_result.jpg")
+
+print("\n程序运行完成！")

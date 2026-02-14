@@ -53,14 +53,17 @@ CV培训/
 │       ├── 03-color-conversion.py
 │       └── ...
 │
-└── assets/                    # 图片资源（待添加）
+└── assets/                    # 图片资源 ✅ 已生成15张测试图片
     ├── sample-images/
-    │   ├── basic/            # 基础图片
-    │   ├── colored-objects/  # 彩色物体
-    │   ├── noisy/            # 含噪图片
-    │   ├── shapes/           # 几何形状
-    │   └── real-world/       # 真实场景
-    └── test-videos/          # 测试视频
+    │   ├── basic/            # 基础图片 (3张)
+    │   ├── colored-objects/  # 彩色物体 (3张)
+    │   ├── noisy/            # 含噪图片 (3张)
+    │   ├── shapes/           # 几何形状 (3张)
+    │   └── real-world/       # 真实场景 (3张)
+    ├── test-videos/          # 测试视频（待添加）
+    ├── 生成测试图片.py        # 自动生成脚本
+    ├── 图片资源说明.md       # 详细说明
+    └── README.md             # 资源目录说明
 ```
 
 ## 任务列表
@@ -117,6 +120,27 @@ python src/examples/01-read-display.py
 - [OpenCV官方文档](https://docs.opencv.org/4.x/)
 - [OpenCV Python教程](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html)
 - 教程文档位于 [docs/](./docs/) 目录
+- **测试图片已生成** - 位于 [assets/](./assets/) 目录（共15张）
+
+### 测试图片说明
+
+✅ **已自动生成15张测试图片**，涵盖所有练习场景：
+
+| 类别 | 图片 | 用途 |
+|-----|------|------|
+| 基础图片 | landscape, portrait, text | 读取、显示、基本操作 |
+| 彩色物体 | red-apple, blue-ball, mixed-colors | 颜色提取、HSV转换 |
+| 含噪图片 | noisy-gaussian, noisy-salt-pepper | 滤波、去噪 |
+| 几何形状 | coins, circles, rectangles | 边缘检测、霍夫变换 |
+| 真实场景 | document, license-plate, face | 实战项目 |
+
+**重新生成图片：**
+```bash
+cd assets
+python 生成测试图片.py
+```
+
+详见 [assets/README.md](./assets/README.md)
 
 ## 常见问题
 
