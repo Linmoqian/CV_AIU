@@ -16,22 +16,43 @@ print("1. 读取图像")
 print("=" * 50)
 
 # 读取彩色图（默认）
-img = cv2.imread('../assets/sample-images/basic/landscape.jpg')
+# 尝试多个可能的路径
+img = None
+possible_paths = [
+    '../assets/sample-images/basic/landscape.jpg',  # 从src/examples/运行
+    '../../assets/sample-images/basic/landscape.jpg',  # 从src/运行
+    'assets/sample-images/basic/landscape.jpg',  # 从项目根目录运行
+]
 
-# 检查是否读取成功
+for path in possible_paths:
+    img = cv2.imread(path)
+    if img is not None:
+        print(f"[OK] 从路径读取成功: {path}")
+        break
+
+# 如果所有路径都失败，生成测试图片
 if img is None:
-    print("错误：无法读取图片！")
-    print("请检查：")
-    print("  1. 文件路径是否正确")
-    print("  2. 文件是否存在")
-    print("  3. 路径中不要包含中文")
-    exit()
-
-print("[OK] 图片读取成功！")
+    print("警告：无法读取图片文件，生成测试图片...")
+    img = np.zeros((400, 600, 3), dtype=np.uint8)
+    # 天空渐变
+    for y in range(300):
+        img[y, :] = [int(255 * y / 300), int(200 * y / 300), 100]
+    # 草地
+    img[300:, :] = [50, 150, 50]
+    # 太阳
+    cv2.circle(img, (500, 80), 50, (0, 255, 255), -1)
+    print("[OK] 测试图片生成成功！")
 
 # 读取灰度图（方法1：直接读取）
-img_gray = cv2.imread('../assets/sample-images/basic/landscape.jpg',
-                     cv2.IMREAD_GRAYSCALE)
+img_gray = None
+for path in possible_paths:
+    img_gray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+    if img_gray is not None:
+        break
+
+# 如果读取失败，从彩色图转换
+if img_gray is None:
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # 读取灰度图（方法2：从彩色图转换）
 img_gray2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
