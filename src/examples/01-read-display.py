@@ -5,35 +5,42 @@ OpenCV基础示例：图像的读取、显示和保存
     1. 掌握cv2.imread()读取图片
     2. 掌握cv2.imshow()显示图片
     3. 掌握cv2.imwrite()保存图片
-    4. 了解中文路径的处理方法
 """
 
 import cv2
 import numpy as np
-import sys
 import os
-
-# 添加utils目录到路径
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'utils'))
-from io_helpers import imread_chinese, imwrite_chinese, get_image_path
 
 # ==================== 1. 读取图像 ====================
 print("1. 读取图像")
 
-# 读取彩色图（默认）
-# 智能查找图片路径
-img_path = get_image_path('sample-images/basic/landscape.jpg')
-if img_path is None:
-    print("错误：无法找到图片文件！")
+# 使用相对路径读取图片
+script_dir = os.path.dirname(os.path.abspath(__file__))
+img_path = os.path.join(script_dir, '../../assets/sample-images/basic/landscape.jpg')
+
+# 检查文件是否存在
+if not os.path.exists(img_path):
+    print(f"错误：无法找到图片文件！")
+    print(f"查找路径: {img_path}")
     print("请运行 'assets/生成测试图片.py' 生成测试图片")
     exit()
 
-img = imread_chinese(img_path)
+# 读取彩色图（默认）
+# 使用np.fromfile解决中文路径问题
+img_array = np.fromfile(img_path, dtype=np.uint8)
+img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+
+if img is None:
+    print("错误：图片读取失败！")
+    print("可能原因：路径包含中文字符")
+    exit()
+
 print(f"[OK] 图片读取成功: {os.path.basename(img_path)}")
-print(f"    完整路径: {img_path}")
+print(f"    相对路径: assets/sample-images/basic/landscape.jpg")
 
 # 读取灰度图（方法1：直接读取）
-img_gray = imread_chinese(img_path, cv2.IMREAD_GRAYSCALE)
+img_array = np.fromfile(img_path, dtype=np.uint8)
+img_gray = cv2.imdecode(img_array, cv2.IMREAD_GRAYSCALE)
 
 # 读取灰度图（方法2：从彩色图转换）
 img_gray2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
