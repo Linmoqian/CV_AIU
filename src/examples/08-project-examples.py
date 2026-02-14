@@ -9,6 +9,17 @@ OpenCV示例：综合项目示例
 
 import cv2
 import numpy as np
+import sys
+import os
+
+# 添加utils目录到路径（兼容中文路径和Jupyter）
+if "__file__" in globals():
+    utils_path = os.path.join(os.path.dirname(__file__), "..", "utils")
+else:
+    utils_path = os.path.abspath(os.path.join("..", "utils"))
+if os.path.exists(utils_path):
+    sys.path.append(utils_path)
+    from io_helpers import imread_chinese, get_image_path
 
 print("综合项目示例")
 
@@ -132,10 +143,14 @@ result = document_scanner()
 if result:
     original, warped, scanned = result
 
-    # 显示结果
-    row1 = np.hstack([original, warped])
-    row2 = np.hstack([cv2.cvtColor(scanned, cv2.COLOR_GRAY2BGR),
-                      np.zeros_like(original)])
+    # 显示结果（调整尺寸以匹配）
+    height, width = original.shape[:2]
+    warped_resized = cv2.resize(warped, (width, height))
+    scanned_resized = cv2.resize(cv2.cvtColor(scanned, cv2.COLOR_GRAY2BGR),
+                                  (width, height))
+
+    row1 = np.hstack([original, warped_resized])
+    row2 = np.hstack([scanned_resized, np.zeros_like(original)])
     result_all = np.vstack([row1, row2])
     result_all = cv2.resize(result_all, None, fx=0.5, fy=0.5)
 
