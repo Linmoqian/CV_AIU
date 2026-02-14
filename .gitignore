@@ -13,6 +13,9 @@ build/
 *.swp
 *.swo
 
+# Claude Code配置
+.claude/
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
