@@ -66,8 +66,11 @@ print("\n2. 对比显示滤波效果")
 row1 = np.hstack([img,
                   blur_mean,
                   blur_gaussian])
+# 创建空白图像填充
+blank = np.zeros_like(img)
 row2 = np.hstack([blur_median,
-                  blur_bilateral])
+                  blur_bilateral,
+                  blank])
 
 result = np.vstack([row1, row2])
 result = cv2.resize(result, None, fx=0.6, fy=0.6)
