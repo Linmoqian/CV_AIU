@@ -31,11 +31,11 @@ print("\n1. BGR与RGB转换")
 
 # BGR转RGB（用于matplotlib显示）
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-print("✓ BGR → RGB")
+print("[OK] BGR → RGB")
 
 # 使用索引反转（快速方法）
 img_rgb2 = img[:, :, ::-1]
-print("✓ BGR → RGB (索引反转)")
+print("[OK] BGR → RGB (索引反转)")
 
 # ==================== 2. BGR转灰度 ====================
 print("\n2. BGR转灰度")
@@ -137,15 +137,15 @@ cv2.destroyAllWindows()
 print("\n保存结果...")
 
 cv2.imwrite('gray.jpg', gray)
-print("✓ 保存: gray.jpg")
+print("[OK] 保存: gray.jpg")
 
 cv2.imwrite('hsv.jpg', hsv)
-print("✓ 保存: hsv.jpg")
+print("[OK] 保存: hsv.jpg")
 
 cv2.imwrite('red_mask.jpg', mask)
-print("✓ 保存: red_mask.jpg")
+print("[OK] 保存: red_mask.jpg")
 
 cv2.imwrite('red_extracted.jpg', result)
-print("✓ 保存: red_extracted.jpg")
+print("[OK] 保存: red_extracted.jpg")
 
 print("\n程序运行完成！")

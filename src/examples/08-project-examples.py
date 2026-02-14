@@ -288,6 +288,26 @@ def face_detector(img_path=None):
     else:
         print("  使用assets中的face.jpg...")
         img = cv2.imread('../assets/sample-images/real-world/face.jpg')
+        if img is None:
+            print("  face.jpg不存在，创建测试人脸图像...")
+            img = np.zeros((400, 400, 3), dtype=np.uint8)
+            img[:] = (200, 200, 200)
+            # 脸部轮廓
+            cv2.ellipse(img, (200, 200), (150, 200), 0, 0, 360, (180, 160, 140), -1)
+            # 眼睛
+            cv2.ellipse(img, (130, 160), (30, 20), 0, 0, 360, (255, 255, 255), -1)
+            cv2.ellipse(img, (270, 160), (30, 20), 0, 0, 360, (255, 255, 255), -1)
+            cv2.circle(img, (130, 160), 10, (0, 0, 0), -1)
+            cv2.circle(img, (270, 160), 10, (0, 0, 0), -1)
+            # 眉毛
+            cv2.line(img, (100, 130), (160, 130), (50, 30, 10), 5)
+            cv2.line(img, (240, 130), (300, 130), (50, 30, 10), 5)
+            # 鼻子
+            pts = np.array([[200, 180], [180, 240], [220, 240]], np.int32)
+            pts = pts.reshape((-1, 1, 2))
+            cv2.fillPoly(img, [pts], (150, 130, 110))
+            # 嘴巴
+            cv2.ellipse(img, (200, 290), (50, 25), 0, 0, 180, (100, 50, 50), 3)
 
     if img is None:
         print("  错误：无法读取图像")

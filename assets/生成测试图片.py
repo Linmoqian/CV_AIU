@@ -7,9 +7,16 @@
 import cv2
 import numpy as np
 import os
+import sys
 
-# 创建输出目录
-output_dir = '../assets/sample-images'
+# 创建输出目录（处理相对路径问题）
+if os.path.basename(os.getcwd()) == 'assets':
+    # 如果在assets目录下运行
+    output_dir = './sample-images'
+else:
+    # 否则使用原路径
+    output_dir = './assets/sample-images'
+
 subdirs = ['basic', 'colored-objects', 'noisy', 'shapes', 'real-world']
 
 for subdir in subdirs:

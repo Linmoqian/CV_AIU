@@ -75,7 +75,7 @@ noisy = binary.copy()
 for _ in range(200):
     x = np.random.randint(0, 600)
     y = np.random.randint(0, 400)
-    cv2.circle(noisy, (y, x), 2, 255, -1)
+    cv2.circle(noisy, (x, y), 2, 255, -1)
 
 opening_noise = cv2.morphologyEx(noisy, cv2.MORPH_OPEN, kernel)
 print("  [OK] 开运算去噪")

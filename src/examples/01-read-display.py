@@ -27,7 +27,7 @@ if img is None:
     print("  3. 路径中不要包含中文")
     exit()
 
-print("✓ 图片读取成功！")
+print("[OK] 图片读取成功！")
 
 # 读取灰度图（方法1：直接读取）
 img_gray = cv2.imread('../assets/sample-images/basic/landscape.jpg',
@@ -89,11 +89,11 @@ print("=" * 50)
 
 # 保存灰度图
 cv2.imwrite('output_gray.jpg', img_gray)
-print("✓ 灰度图已保存为: output_gray.jpg")
+print("[OK] 灰度图已保存为: output_gray.jpg")
 
 # 保存为PNG格式（无损）
 cv2.imwrite('output_gray.png', img_gray)
-print("✓ 灰度图已保存为: output_gray.png")
+print("[OK] 灰度图已保存为: output_gray.png")
 
 # ==================== 6. 创建测试图像 ====================
 print("\n" + "=" * 50)
@@ -110,7 +110,7 @@ cv2.putText(test_img, 'OpenCV Test', (50, 150),
 
 # 保存测试图像
 cv2.imwrite('test_image.jpg', test_img)
-print("✓ 测试图像已保存为: test_image.jpg")
+print("[OK] 测试图像已保存为: test_image.jpg")
 
 # 显示测试图像
 cv2.imshow('Test Image', test_img)
