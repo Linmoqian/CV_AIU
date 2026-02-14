@@ -11,9 +11,7 @@ OpenCV示例：图像阈值处理
 import cv2
 import numpy as np
 
-print("=" * 50)
 print("图像阈值处理")
-print("=" * 50)
 
 # 读取图像
 img = cv2.imread('../assets/sample-images/real-world/document.jpg')

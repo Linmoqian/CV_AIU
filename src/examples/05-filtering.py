@@ -11,9 +11,7 @@ OpenCV示例：图像滤波与增强
 import cv2
 import numpy as np
 
-print("=" * 50)
 print("图像滤波与边缘检测")
-print("=" * 50)
 
 # 读取含噪图片
 img = cv2.imread('../assets/sample-images/noisy/noisy-gaussian.jpg')

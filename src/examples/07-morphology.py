@@ -11,9 +11,7 @@ OpenCV示例：形态学操作
 import cv2
 import numpy as np
 
-print("=" * 50)
 print("形态学操作")
-print("=" * 50)
 
 # 创建测试图像（二值图）
 test_img = np.zeros((400, 600, 3), dtype=np.uint8)

@@ -11,9 +11,7 @@ OpenCV示例：图像绘制
 import cv2
 import numpy as np
 
-print("=" * 50)
 print("图像绘制示例")
-print("=" * 50)
 
 # 创建黑色画布
 img = np.zeros((600, 800, 3), dtype=np.uint8)

@@ -11,9 +11,7 @@ OpenCV示例：视频处理
 import cv2
 import numpy as np
 
-print("=" * 50)
 print("视频处理示例")
-print("=" * 50)
 
 # ==================== 1. 读取视频文件 ====================
 print("\n1. 读取视频文件")
@@ -265,9 +263,7 @@ cv2.destroyAllWindows()
 print(f"\n  [完成] 视频已保存: {output_path}")
 print(f"  总帧数: {frame_count}")
 
-print("\n" + "=" * 50)
 print("视频处理示例完成！")
-print("=" * 50)
 
 print("\n提示:")
 print("  - 如果没有摄像头，请将测试视频放在 assets/test-videos/ 目录")

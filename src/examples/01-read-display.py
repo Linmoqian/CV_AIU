@@ -18,9 +18,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'utils'))
 from io_helpers import imread_chinese, imwrite_chinese, get_image_path
 
 # ==================== 1. 读取图像 ====================
-print("=" * 50)
 print("1. 读取图像")
-print("=" * 50)
 
 # 读取彩色图（默认）
 # 智能查找图片路径
@@ -41,9 +39,7 @@ img_gray = imread_chinese(img_path, cv2.IMREAD_GRAYSCALE)
 img_gray2 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 # ==================== 2. 查看图像属性 ====================
-print("\n" + "=" * 50)
 print("2. 图像属性")
-print("=" * 50)
 
 print(f"图像形状: {img.shape}")
 print(f"  - 高度: {img.shape[0]} 像素")
@@ -54,9 +50,7 @@ print(f"\n图像尺寸: {img.size} 像素")
 print(f"数据类型: {img.dtype}")
 
 # ==================== 3. 访问像素 ====================
-print("\n" + "=" * 50)
 print("3. 像素访问")
-print("=" * 50)
 
 # 访问单个像素（返回BGR值）
 pixel = img[100, 100]
@@ -69,9 +63,7 @@ red = img[100, 100, 2]
 print(f"  B={blue}, G={green}, R={red}")
 
 # ==================== 4. 显示图像 ====================
-print("\n" + "=" * 50)
 print("4. 显示图像")
-print("=" * 50)
 
 # 显示彩色图
 cv2.imshow('Color Image', img)
@@ -87,9 +79,7 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 
 # ==================== 5. 保存图像 ====================
-print("\n" + "=" * 50)
 print("5. 保存图像 (已禁用)")
-print("=" * 50)
 
 # 保存功能已禁用，如需保存请取消以下注释
 # cv2.imwrite('output_gray.jpg', img_gray)
@@ -97,9 +87,7 @@ print("=" * 50)
 print("[提示] 图片保存功能已禁用，避免生成多余文件")
 
 # ==================== 6. 创建测试图像 ====================
-print("\n" + "=" * 50)
 print("6. 创建测试图像")
-print("=" * 50)
 
 # 创建一个300x300的蓝色图像
 test_img = np.zeros((300, 300, 3), dtype=np.uint8)

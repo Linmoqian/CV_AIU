@@ -10,13 +10,10 @@ OpenCV示例：综合项目示例
 import cv2
 import numpy as np
 
-print("=" * 50)
 print("综合项目示例")
-print("=" * 50)
 
 # ==================== 项目1：文档扫描器 ====================
 print("\n[项目1] 文档扫描器")
-print("-" * 50)
 
 def document_scanner(img_path=None):
     """文档扫描器"""
@@ -155,7 +152,6 @@ if result:
 
 # ==================== 项目2：颜色识别分类器 ====================
 print("\n[项目2] 颜色识别分类器")
-print("-" * 50)
 
 def color_classifier(img_path=None):
     """颜色识别分类器"""
@@ -271,7 +267,6 @@ if result:
 
 # ==================== 项目3：简单人脸检测 ====================
 print("\n[项目3] 简单人脸检测")
-print("-" * 50)
 
 def face_detector(img_path=None):
     """人脸检测"""
@@ -363,6 +358,4 @@ if result:
     # cv2.imwrite('face_detection_result.jpg', result_img)
     print("  [提示] 图片保存功能已禁用")
 
-print("\n" + "=" * 50)
 print("所有项目演示完成！")
-print("=" * 50)
