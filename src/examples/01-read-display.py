@@ -5,10 +5,19 @@ OpenCV基础示例：图像的读取、显示和保存
     1. 掌握cv2.imread()读取图片
     2. 掌握cv2.imshow()显示图片
     3. 掌握cv2.imwrite()保存图片
+    4. 了解中文路径的处理方法
 """
 
 import cv2
 import numpy as np
+import os
+
+def imread_chinese(path):
+    """读取包含中文路径的图片（OpenCV不支持中文路径的解决方案）"""
+    if not os.path.exists(path):
+        return None
+    img = cv2.imdecode(np.fromfile(path, dtype=np.uint8), -1)
+    return img
 
 # ==================== 1. 读取图像 ====================
 print("=" * 50)
@@ -25,29 +34,26 @@ possible_paths = [
 ]
 
 for path in possible_paths:
-    img = cv2.imread(path)
+    img = imread_chinese(path)  # 使用支持中文路径的函数
     if img is not None:
         print(f"[OK] 从路径读取成功: {path}")
         break
 
-# 如果所有路径都失败，生成测试图片
+# 如果所有路径都失败，提示错误
 if img is None:
-    print("警告：无法读取图片文件，生成测试图片...")
-    img = np.zeros((400, 600, 3), dtype=np.uint8)
-    # 天空渐变
-    for y in range(300):
-        img[y, :] = [int(255 * y / 300), int(200 * y / 300), 100]
-    # 草地
-    img[300:, :] = [50, 150, 50]
-    # 太阳
-    cv2.circle(img, (500, 80), 50, (0, 255, 255), -1)
-    print("[OK] 测试图片生成成功！")
+    print("错误：无法读取图片！")
+    print("请检查：")
+    print("  1. 文件路径是否正确")
+    print("  2. 文件是否存在")
+    print("  3. 请运行 'assets/生成测试图片.py' 生成测试图片")
+    exit()
 
 # 读取灰度图（方法1：直接读取）
 img_gray = None
 for path in possible_paths:
-    img_gray = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+    img_gray = imread_chinese(path)
     if img_gray is not None:
+        img_gray = cv2.cvtColor(img_gray, cv2.COLOR_BGR2GRAY)
         break
 
 # 如果读取失败，从彩色图转换
