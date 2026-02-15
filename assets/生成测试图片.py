@@ -225,7 +225,6 @@ print("=" * 60)
 
 # 生成图片清单
 print("\n生成的图片清单:")
-print("-" * 60)
 for subdir in subdirs:
     files = os.listdir(f'{output_dir}/{subdir}')
     print(f"\n{subdir}/ ({len(files)} 张):")
