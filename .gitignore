@@ -20,8 +20,6 @@ build/
 .ipynb_checkpoints
 
 # 测试生成的图片
-*.jpg
-*.png
 !assets/sample-images/**/*.jpg
 !assets/sample-images/**/*.png
 
